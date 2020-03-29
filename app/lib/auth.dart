@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class BaseAuth {
-  Future<String> signInWithEmailAndPassword(String email, String password);
-  Future<String> createUserWithEmailAndPassword(String email, String password);
+  Future<String> signIn(String email, String password);
+  Future<String> createUser(String email, String password);
   Future<String> currentUser();
   Future<void> signOut();
 }
@@ -12,14 +12,16 @@ class Auth implements BaseAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<FirebaseUser> signInWithEmailAndPassword(String email, String password) async {
-    final FirebaseUser user = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password).user;
+  Future<String> signIn(String email, String password) async {
+    final AuthResult result = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    FirebaseUser user = result.user;
     return user?.uid;
   }
 
   @override
-  Future<FirebaseUser> createUserWithEmailAndPassword(String email, String password) async {
-    final FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password).user;
+  Future<String> createUser(String email, String password) async {
+    final AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+    FirebaseUser user = result.user;
     return user?.uid;
   }
 

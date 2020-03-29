@@ -39,8 +39,8 @@ class _LoginPageState extends State<LoginPage> {
     if (validateAndSave()) {
       try {
         String userId = _formType == FormType.login
-            ? await widget.auth.signInWithEmailAndPassword(_email, _password)
-            : await widget.auth.createUserWithEmailAndPassword(_email, _password);
+            ? await widget.auth.signIn(_email, _password)
+            : await widget.auth.createUser(_email, _password);
         setState(() {
           _authHint = 'Signed In\n\nUser id: $userId';
         });
@@ -134,7 +134,8 @@ class _LoginPageState extends State<LoginPage> {
         //height: 80.0,
         padding: const EdgeInsets.all(32.0),
         child: new Text(
-            _authHint,
+          //  _authHint,
+          " ",
             key: new Key('hint'),
             style: new TextStyle(fontSize: 18.0, color: Colors.grey),
             textAlign: TextAlign.center)
