@@ -1,4 +1,6 @@
 # app
-Basic Flutter Application(ONGOING) \n
-Login and SignUp Using Firebase Implemented
+Basic Flutter Application(ONGOING)
+
+
+1.Login and SignUp Using Firebase Implemented
 
